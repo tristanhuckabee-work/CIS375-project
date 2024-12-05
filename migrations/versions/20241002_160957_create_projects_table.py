@@ -27,8 +27,8 @@ def upgrade():
     sa.Column('description', sa.String(length=1000), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['creator_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.ForeignKeyConstraint(['creator_id'], ['users.id'], )
     )
 
     if environment == "production":

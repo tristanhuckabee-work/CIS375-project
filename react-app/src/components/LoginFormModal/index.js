@@ -17,21 +17,30 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal()
     }
   };
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("yungdemo@demo.com", "6b3a55e0261b0304143f805a24924d0c1c44524821305f31d9277843b8a10f4e"));
+    if (data) {
+      setErrors(data);
+    } else {
+      closeModal()
+    }
+  }
 
   return (
     <>
-      <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
+        <h1>Log In</h1>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
         <label>
-          Email
+          Email_
           <input
             type="text"
             value={email}
@@ -40,7 +49,7 @@ function LoginFormModal() {
           />
         </label>
         <label>
-          Password
+          Password_
           <input
             type="password"
             value={password}
@@ -48,7 +57,8 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className="action-button" type="submit">Log In</button>
+        <button className="action-button" onClick={demoLogin}>Demo Login</button>
       </form>
     </>
   );

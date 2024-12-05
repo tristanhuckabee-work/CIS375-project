@@ -25,6 +25,7 @@ class Project(db.Model):
         return {
             'id': self.id,
             'name': self.name,
+            'creator_id':self.creator_id,
             'description': self.description,
             'updated_at': self.updated_at,
             'users': [self.creator.min_details(), *[user.as_user() for user in self.users]]

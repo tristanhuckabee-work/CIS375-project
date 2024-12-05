@@ -1,0 +1,37 @@
+.project-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 10% 0 10%;
+}
+#project-container {
+  border: 1px solid #cacaca;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  margin: 0 10%;
+  padding: 10px;
+}
+.project-card {
+  align-items: flex-start;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 5px #cccccc;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 150px;
+  padding: 10px;
+}
+.project-card:hover {
+  background-color: #fbfbfb;
+  box-shadow: 0 0 10px 5px #bbbbbb;
+}
+.project-card span { width: 100% }
+.project-card span h3 { margin: 0 }
+.project-card .pc-date {
+  font-size: .75em;
+  margin: 0;
+}

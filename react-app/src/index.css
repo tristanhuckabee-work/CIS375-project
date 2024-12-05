@@ -1,1 +1,22 @@
 /* TODO Add site wide styles */
+* { box-sizing: border-box }
+:root {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+body {
+  background-color: #eee;
+  margin: 0;
+  padding: 0
+}
+.action-button {
+  background-color: black;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  text-transform: uppercase;
+  width: 100px;
+}

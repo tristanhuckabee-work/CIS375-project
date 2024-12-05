@@ -1,7 +1,23 @@
+header {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10%;
+}
+
 .profile-dropdown {
+  background-color: white;
   position: absolute;
 }
 
-.hidden {
-  display: none;
+.nav-right {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+.action-button:hover {
+  background-color: #944;
 }

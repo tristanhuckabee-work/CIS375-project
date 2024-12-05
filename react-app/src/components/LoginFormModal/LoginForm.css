@@ -1,0 +1,10 @@
+form {
+  align-items: flex-start;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: flex-start;
+  padding: 10px;
+}

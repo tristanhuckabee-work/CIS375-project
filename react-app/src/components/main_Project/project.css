@@ -1,0 +1,49 @@
+#project-page {
+  margin: 20px 10% 0 10%;
+  align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+}
+#project-page > div {
+  border: 1px solid #cacaca;
+  border-radius: 10px;
+  min-height: 80vh;
+  padding: 10px;
+}
+#project-page > div h2 {
+  margin: 0;
+}
+#project-deets {
+  width: 80%
+}
+#project-users {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: flex-start;
+  width: 20%;
+}
+#project-users span:first-child {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.user-side-card {
+  background-color: white;
+  border: 1px solid none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.user-side-card.currUser {
+  border: 1px solid goldenrod;
+}
+.user-side-card.creator {
+  background-color: goldenrod;
+  color: white;
+}
