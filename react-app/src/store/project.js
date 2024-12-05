@@ -61,7 +61,9 @@ export const getOneProject = id => async dispatch => {
   }
   return data;
 }
-export const updateProject = project => async dispatch => { }
+export const updateProject = project => async dispatch => {
+
+}
 export const deleteProject = id => async dispatch => {
   const res = await fetch(`/api/projects/${id}`, {
     method: 'DELETE'
@@ -80,6 +82,7 @@ const initialState = {};
 
 export default function reducer(state = initialState, action) {
   const newState = { ...state };
+  
   switch (action.type) {
     case CREATE:
       return newState;
