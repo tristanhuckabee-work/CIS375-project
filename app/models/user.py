@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
 
     projects = db.relationship('Project', back_populates='creator', cascade='all, delete-orphan')
     project_mems = db.relationship('Project_User', back_populates='users', cascade='all, delete-orphan')
+    tickets = db.relationship('Ticket', back_populates='creator', cascade='all, delete-orphan')
 
 
     @property

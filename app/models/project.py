@@ -17,6 +17,7 @@ class Project(db.Model):
 
     creator = db.relationship("User", back_populates="projects")
     users = db.relationship('Project_User', back_populates='projects', cascade='all, delete-orphan')
+    tickets = db.relationship('Ticket', back_populates='project', cascade='all, delete-orphan')
 
     def all_details(self):
         """
