@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/session';
-import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import OpenModalButton from '../OpenModalButton';
 import SignupFormModal from '../SignupFormModal';
 import LoginFormModal from '../LoginFormModal';
 
-function Navigation({ isLoaded }) {
+function Navigation() {
 	const dispatch = useDispatch();
 	const sessionUser = useSelector(state => state.session.user);
 	const [showMenu, setShowMenu] = useState(false);
 
 	const toggleMenu = () => { setShowMenu(!showMenu) }
-	useEffect(() => {
-		if (!showMenu) return;
-		toggleMenu();
-	}, [showMenu]);
+	// useEffect(() => {
+	// 	if (!showMenu) return;
+	// 	toggleMenu();
+	// }, [showMenu]);
 
 	const handleLogout = (e) => {
 		e.preventDefault();

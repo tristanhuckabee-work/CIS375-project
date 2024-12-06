@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getOneProject } from '../../store/project';
 import './userOpts.css';
 import OpenModalButton from '../OpenModalButton';
 import { useModal } from '../../context/Modal';

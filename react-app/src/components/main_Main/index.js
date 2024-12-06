@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProjectsById } from '../../store/project';
-import './main.css';
+import { reset_tickets } from '../../store/ticket';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import SignupFormModal from '../SignupFormModal';
 import OpenModalButton from '../OpenModalButton';
 import NewProjectForm from '../form_newProject';
+import './main.css';
 
 function Main() {
   const dispatch = useDispatch();
@@ -17,6 +16,7 @@ function Main() {
   useEffect(() => {
     if (sessionUser) {
       dispatch(getAllProjectsById(sessionUser.id));
+      dispatch(reset_tickets())
     }
   }, [dispatch])
 

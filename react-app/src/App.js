@@ -7,6 +7,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import Navigation from "./components/Navigation";
 import Main from "./components/main_Main";
 import ProjectPage from "./components/main_Project";
+import TicketPage from "./components/main_Ticket";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path="/projects/:id">
             <ProjectPage />
+          </Route>
+          <Route path="/tickets/:id">
+            <TicketPage />
           </Route>
           <Route path="/login" >
             <LoginFormPage />
