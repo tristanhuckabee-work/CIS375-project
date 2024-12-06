@@ -16,7 +16,6 @@ const delete_project = (payload) => ({ type: DELETE, payload });
 
 // thunks
 export const createProject = project => async dispatch => {
-  console.log(project);
   const res = await fetch('/api/projects/', {
     method: 'POST',
     body: project
@@ -25,7 +24,7 @@ export const createProject = project => async dispatch => {
   const data = await res.json();
 
   if (res.ok) {
-    dispatch(create_project);
+    dispatch(create_project(data));
     return data.id;
   }
   return {errors: data};
