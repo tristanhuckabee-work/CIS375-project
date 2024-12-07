@@ -5,6 +5,7 @@ const READ_USER = "projects/READ_BY_USER";
 const READ_ONE = "projects/READ_ONE";
 const UPDATE = "projects/UPDATE";
 const DELETE = "projects/DELETE";
+const ADD_USER = "projects/ADD_USER";
 
 // action creators
 const create_project = (payload) => ({ type: CREATE, payload });
@@ -15,6 +16,18 @@ const read_project = (payload) => ({ type: READ_ONE, payload });
 const delete_project = (payload) => ({ type: DELETE, payload });
 
 // thunks
+export const addUser = payload => async dispatch => {
+  const [uid, id] = payload
+
+  const res = await fetch(`/api/projects/${id}/users/${uid}`, {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  })
+  
+  const data = await res.json();
+
+  return data;
+}
 export const createProject = project => async dispatch => {
   const res = await fetch('/api/projects/', {
     method: 'POST',
@@ -27,7 +40,7 @@ export const createProject = project => async dispatch => {
     dispatch(create_project(data));
     return data.id;
   }
-  return {errors: data};
+  return { errors: data };
 }
 export const getAllProjects = () => async dispatch => {
   const res = await fetch("/api/projects");
@@ -81,7 +94,7 @@ const initialState = {};
 
 export default function reducer(state = initialState, action) {
   const newState = { ...state };
-  
+
   switch (action.type) {
     case CREATE:
       return newState;

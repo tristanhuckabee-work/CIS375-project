@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Main from "./components/main_Main";
 import ProjectPage from "./components/main_Project";
 import TicketPage from "./components/main_Ticket";
+import Invites from "./components/a_invite";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path="/tickets/:id">
             <TicketPage />
+          </Route>
+          <Route path="/invite/:id">
+            <Invites />
           </Route>
           <Route path="/login" >
             <LoginFormPage />

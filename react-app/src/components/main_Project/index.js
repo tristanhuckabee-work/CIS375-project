@@ -51,7 +51,7 @@ function ProjectPage() {
     return null;
   }
   const createProjectInvite = (e) => {
-    navigator.clipboard.writeText(`http://.onrender.com/invite/${id}`)
+    navigator.clipboard.writeText(`http://localhost:3000/invite/${id}`)
   }
 
 
