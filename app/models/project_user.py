@@ -20,9 +20,13 @@ class Project_User(db.Model):
         """
             Returns relationship details as a dictionary for use by the Project
         """
+        tmp = self.users.min_details()
+
         return {
             'role': self.role,
-            'users': [user.min_details() for user in self.users]
+            'first_name': tmp['first_name'],
+            'last_name': tmp['last_name'],
+            'id': tmp['id'],
         }
     
     def as_project(self):
@@ -31,5 +35,5 @@ class Project_User(db.Model):
         """
         return {
             'role': self.role,
-            'projects': [project.min_details() for project in self.projects]
+            # 'projects': [project.min_details() for project in self.projects]
         }

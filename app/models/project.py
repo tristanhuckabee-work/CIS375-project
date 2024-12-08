@@ -29,7 +29,7 @@ class Project(db.Model):
             'creator_id':self.creator_id,
             'description': self.description,
             'updated_at': self.updated_at,
-            'users': [self.creator.min_details(), *[user.as_user() for user in self.users]]
+            'users': sorted([user.as_user() for user in self.users], key=lambda el: el['first_name'])
         }
     
     def min_details(self):

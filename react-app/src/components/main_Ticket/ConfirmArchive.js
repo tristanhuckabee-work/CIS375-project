@@ -1,18 +1,16 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import './userOpts.css';
-import OpenModalButton from '../OpenModalButton';
-import EditProjectForm from '../main_Project/editProject';
 import { useModal } from '../../context/Modal';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import './ticket.css';
 
-function ConfirmDelete({id, action}) {
+function ConfirmArchive({red, id, action}) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { closeModal } = useModal();
   const handleConfirm = async () => {
     await dispatch(action(id));
-    history.push("/");
+    history.push(red);
     closeModal();
   }
 
@@ -27,19 +25,4 @@ function ConfirmDelete({id, action}) {
   )
 }
 
-function UserOptions({ item_id, action }) {
-  return (
-    <div className="user-options">
-      <OpenModalButton
-        buttonText="Edit"
-        modalComponent={<EditProjectForm id={item_id} action={action} />}
-      />
-      <OpenModalButton
-        buttonText="Delete"
-        modalComponent={<ConfirmDelete id={item_id} action={action} />}
-      />
-    </div>
-  );
-}
-
-export default UserOptions;
+export default ConfirmArchive;

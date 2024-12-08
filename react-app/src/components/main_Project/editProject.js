@@ -1,43 +1,39 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { createProject } from "../../store/project";
+import { updateProject } from "../../store/project";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useModal } from "../../context/Modal";
-import './newProject.css';
+import './project.css';
 
-function NewProjectForm() {
+function EditProjectForm({id}) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { closeModal } = useModal();
   const sessionUser = useSelector((state) => state.session.user);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const project = useSelector((state) => state.project[id])
+
+  const [name, setName] = useState(project?.name);
+  const [description, setDescription] = useState(project?.description);
   const [errors, setErrors] = useState([]);
 
   if (!sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let today = new Date();
 
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('description', description);
-    formData.append('creator_id', sessionUser.id);
-
-    const data = await dispatch(createProject(formData));
+    const data = await dispatch(updateProject({name, description, today, id}));
     if (!data.errors) {
       history.push(`/projects/${data}`);
       closeModal();
-    } else {
-      setErrors(data.errors);
     }
   }
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <h1>New Project</h1>
+        <h1>Edit Project</h1>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -67,4 +63,4 @@ function NewProjectForm() {
 };
 
 
-export default NewProjectForm;
+export default EditProjectForm;

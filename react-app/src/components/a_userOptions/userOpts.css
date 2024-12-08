@@ -1,0 +1,10 @@
+.confirm-delete {
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+.confirm-delete span {
+  display: flex;
+  gap: 10px;
+}

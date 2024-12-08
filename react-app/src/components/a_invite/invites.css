@@ -7,15 +7,26 @@
   margin: 20px 10% 0 10%;
   padding-bottom: 20px;
 }
+
 .project-name-wow {
   background-color: black;
   border-radius: 5px;
   color: white;
   padding: 5px 10px;
 }
-#invite-page-a span {
-  align-items: center;
+
+#invite-page-a span, #invite-page-b span {
+  align-items: flex-start;
   display: flex;
   gap: 10px;
 }
-#invite-page-b {}
+
+#invite-page-b {
+  align-items: center;
+  border: 1px solid #cacaca;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 10% 0 10%;
+  padding-bottom: 20px;
+}

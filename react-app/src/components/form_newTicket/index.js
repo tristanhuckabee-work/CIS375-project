@@ -34,6 +34,8 @@ function NewTicketForm({ project }) {
     if (!data.errors) {
       history.push(`/tickets/${data}`);
       closeModal();
+    } else {
+      setErrors(data.errors);
     }
   }
 
@@ -47,7 +49,7 @@ function NewTicketForm({ project }) {
           ))}
         </ul>
         <label>
-          Name_
+          Name
           <input
             type="text"
             value={name}
@@ -56,7 +58,7 @@ function NewTicketForm({ project }) {
           />
         </label>
         <label>
-          Description_
+          Description
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -64,7 +66,7 @@ function NewTicketForm({ project }) {
           />
         </label>
         <label>
-          Priority_
+          Priority
           <select
             value={priority}
             onChange={(e) => setPriority(e.target.value)}
@@ -76,9 +78,9 @@ function NewTicketForm({ project }) {
             <option value="3">URGENT</option>
             <option value="4">CRITICAL</option>
           </select>
-      </label>
-      <button className="action-button" type="submit">Create Ticket</button>
-    </form >
+        </label>
+        <button className="action-button" type="submit">Create Ticket</button>
+      </form >
     </>
   );
 };

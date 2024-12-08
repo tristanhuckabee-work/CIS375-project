@@ -15,11 +15,14 @@
   margin: 0;
 }
 #tpc-left {
-  /* background-color: blue; */
   width: 60%;
 }
 #tpc-right {
-  /* background-color: red; */
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: flex-start;
   width: 40%;
 }
 .tp-deet {font-weight: bold;}
@@ -33,4 +36,19 @@
 }
 .plink:hover {
   background-color: #944;
+}
+
+.tnote-card {
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 100%;
+}
+.tnote-card h4, .tnote-card p { margin: 0 }
+.tnote-card p {
+  margin-top: 5px;
+}
+.tnc-date {
+  font-size: 0.75em;
+  font-weight: bold;
 }

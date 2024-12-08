@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from app.models import Project, db
+from app.models import Project, Project_User, Ticket, db
 from app.forms import ProjectForm
 
 project_routes = Blueprint('projects', __name__)
@@ -23,8 +23,6 @@ def create_project():
 
     db.session.add(project)
     db.session.commit()
-
-    print("\n\n\n\n\n", project.min_details())
 
     return project.all_details(), 201
   return form.errors, 400
@@ -62,3 +60,51 @@ def delete_project(id):
     db.session.delete(project)
     db.session.commit()
     return {"message":"Successfully Deleted"}
+  
+@project_routes.route("/<int:id>", methods=["PATCH"])
+@login_required
+def update_project(id):
+  """
+  PATCH /projects/:project_id : Update a project by ID
+  """
+  req = request.json
+  project = Project.query.get(id)
+  
+  if not project:
+    return {'message': 'project not found'}, 404
+  elif project.creator_id != current_user.id:
+    return {'message': 'project not Owned'}, 403
+  
+  if 'name' in req:
+    project.name=req['name']
+  if 'description' in req:
+    project.description=req['description']
+    
+  db.session.commit()
+
+  return project.all_details(), 200
+
+@project_routes.route("/<int:id>/tickets")
+@login_required
+def get_all_tickets(id):
+  """
+  Query for all tickets associated with a project.
+  """
+  tickets = Ticket.query.filter(Ticket.project_id == id).all()
+  # print("\n\n\n", tickets[0].to_dict()['project']['id'], id)
+  return [ticket.to_dict() for ticket in tickets]
+
+@project_routes.route("/<int:id>/users/<int:uid>", methods=["POST"])
+@login_required
+def add_project_user(id, uid):
+  pu = Project_User.query.filter(Project_User.user_id == uid, Project_User.project_id == id).all()
+
+  if len(pu) > 0:
+    return {'message': "You're already a member."}, 200
+  
+  project_user = Project_User(user_id=uid, project_id=id, role='member')
+
+  db.session.add(project_user)
+  db.session.commit()
+  
+  return {'message':'Successfully Added'}, 200

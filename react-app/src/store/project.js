@@ -5,18 +5,17 @@ const READ_USER = "projects/READ_BY_USER";
 const READ_ONE = "projects/READ_ONE";
 const UPDATE = "projects/UPDATE";
 const DELETE = "projects/DELETE";
-const ADD_USER = "projects/ADD_USER";
 
 // action creators
 const create_project = (payload) => ({ type: CREATE, payload });
 const read_projects = (payload) => ({ type: READ_ALL, payload });
 const read_by_user = payload => ({ type: READ_USER, payload });
 const read_project = (payload) => ({ type: READ_ONE, payload });
-// const update_project = (payload) => ({ type: UPDATE, payload });
+const update_project = (payload) => ({ type: UPDATE, payload });
 const delete_project = (payload) => ({ type: DELETE, payload });
 
 // thunks
-export const addUser = payload => async dispatch => {
+export const addUser = payload => async () => {
   const [uid, id] = payload
 
   const res = await fetch(`/api/projects/${id}/users/${uid}`, {
@@ -74,7 +73,16 @@ export const getOneProject = id => async dispatch => {
   return data;
 }
 export const updateProject = project => async dispatch => {
-
+  const {name, description, today, id} = project;
+  const res = await fetch(`/api/projects/${id}`, {
+    method: 'PATCH',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({name, description, updated_at:today})
+  });
+  const data = await res.json();
+  
+  if (res.ok) dispatch(update_project(data));
+  return data;
 }
 export const deleteProject = id => async dispatch => {
   const res = await fetch(`/api/projects/${id}`, {
@@ -116,6 +124,7 @@ export default function reducer(state = initialState, action) {
       newState[action.payload.id] = action.payload;
       return newState;
     case UPDATE:
+      newState[action.payload.id] = action.payload;
       return newState;
     case DELETE:
       delete newState[action.payload]

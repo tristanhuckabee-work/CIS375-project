@@ -7,6 +7,7 @@ import UserOptions from '../a_userOptions';
 import TicketCard from './ticketCard';
 import OpenModalButton from '../OpenModalButton';
 import NewTicketForm from '../form_newTicket';
+import { reset_tnotess } from '../../store/ticket_notes';
 
 function ProjectPage() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function ProjectPage() {
     if (sessionUser) {
       dispatch(getOneProject(id));
       dispatch(getAllTickets(id));
+      dispatch(reset_tnotess())
     }
   }, [dispatch])
 
@@ -42,7 +44,6 @@ function ProjectPage() {
     })
   }
   const generateCards = () => {
-    console.log(tickets.byPriority)
     if (tickets?.byPriority?.length) {
       return tickets.byPriority.map(ticket => {
         return <TicketCard ticket={ticket} />

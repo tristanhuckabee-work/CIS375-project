@@ -20,15 +20,16 @@ class Ticket(db.Model):
 
     creator = db.relationship("User", back_populates="tickets")
     project = db.relationship("Project", back_populates="tickets")
+    notes = db.relationship("TicketNote", back_populates="ticket", cascade='all, delete-orphan')
 
 
     def convert_priority(self):
         priorities = ['low,white','medium,grey','high,yellow','urgent,orange','critical,red']
-        return priorities[self.priority].split(',')
+        return [*priorities[self.priority].split(','), self.priority]
 
     def convert_status(self):
         statuses = ['completed', 'active', 'archived']
-        return statuses[self.status]
+        return [statuses[self.status], self.status]
 
 
     def to_dict(self):
@@ -37,8 +38,8 @@ class Ticket(db.Model):
         """
         return {
             'id': self.id,
-            'creator': self.creator,
-            'project': self.project,
+            'creator': self.creator.min_details(),
+            'project': self.project.min_details(),
             'name': self.name,
             'description': self.description,
             'priority': self.convert_priority(),

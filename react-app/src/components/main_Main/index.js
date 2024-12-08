@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProjectsById } from '../../store/project';
 import { reset_tickets } from '../../store/ticket';
+import { reset_tnotess } from '../../store/ticket_notes';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import OpenModalButton from '../OpenModalButton';
 import NewProjectForm from '../form_newProject';
@@ -17,6 +18,7 @@ function Main() {
     if (sessionUser) {
       dispatch(getAllProjectsById(sessionUser.id));
       dispatch(reset_tickets())
+      dispatch(reset_tnotess())
     }
   }, [dispatch])
 

@@ -20,3 +20,22 @@ body {
   text-transform: uppercase;
   width: 100px;
 }
+label {
+  border: 1px solid #cacaca;
+  border-radius: 5px;;
+  padding: 5px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+label:focus-within {
+  background-color: black;
+  border-color: black;
+  color:white;
+}
+form li {
+  color: red;
+  list-style: none;
+}

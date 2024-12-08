@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import project from './project';
 import ticket  from './ticket';
+import ticketNotes from './ticket_notes';
 
 const rootReducer = combineReducers({
   session,
   project,
-  ticket
+  ticket,
+  ticketNotes
 });
 
 
