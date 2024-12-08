@@ -23,7 +23,7 @@ function TicketPage() {
 
   const sessionUser = useSelector(state => state.session.user);
   const ticket = useSelector(state => state.ticket[id]);
-  const userRole = useSelector(state => state.project[ticket?.project?.id])?.users?.filter(el => el.id === sessionUser.id)[0];
+  const userRole = useSelector(state => state.project[ticket?.project?.id])?.users?.filter(el => el?.id === sessionUser?.id)[0];
   const tnotes = useSelector(state => state.ticketNotes);
   const [_cd, cd, cm, cy, _ct, _cz] = ticket?.created_at?.split(' ') || [0, 1, 2, 3, 4, 5];
   const [_ud, ud, um, uy, _ut, _uz] = ticket?.updated_at?.split(' ') || [0, 1, 2, 3, 4, 5];
